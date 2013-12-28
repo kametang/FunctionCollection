@@ -10,12 +10,12 @@ int modifyConfig(const char *filename, const char *pattern, const char *value)
 	FILE *tf = fopen(tmpfile, "w");
 	FILE *ori = fopen(filename, "r");
 	while(fgets(line, 128, ori)){
-		if(strncmp(line, pattern, patternLen) == 0)
-			fprintf(tf, "%s=%s\n", pattern, value);
+			if(strncmp(line, pattern, patternLen) == 0)
+				fprintf(tf, "%s=%s\n", pattern, value);
 		else
-			fputs(line, tf);
+			fprintf(tf, "%s", line);
 	}
-
+	
 	fclose(tf);
 	fclose(ori);
 	rename(tmpfile, filename);
